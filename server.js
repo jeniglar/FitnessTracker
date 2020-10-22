@@ -40,13 +40,26 @@ app.post("/api/workouts", (req, res) => {
 });
 
     // PUT /api/workouts/:id 
-// app.put("api/workouts/:id", (req, res) => {
-//     Workout.findByIdAndUpdate(req.params.id, )
-// })
-
-
+app.put("/api/workouts/:id", (req, res) => {
+    Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } })
+        .then(dbWorkout => {
+            res.json(dbWorkout)
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+    });
 
     // GET /api/workouts/range
+app.get("/api/workouts/range", (req, res) => {
+        Workout.find({}).limit(7)
+        .then(dbWorkout => {
+            res.json(dbWorkout);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+    });
 
 
 //HTML ROUTES
