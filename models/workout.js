@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
+// Add additional criteria to exercises
+///////////////////////////////////
     day: Date,
     exercises: Array
 });
